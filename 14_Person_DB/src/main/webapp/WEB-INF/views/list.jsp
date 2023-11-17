@@ -11,6 +11,8 @@ list.jsp <br>
       <td>아이디</td>
       <td>이름</td>
       <td>나이</td>
+      <td>삭제</td>
+      <td>수정</td>
    </tr>
 	<c:forEach var="pb" items="${ lists }">
 	   <tr>
@@ -18,6 +20,8 @@ list.jsp <br>
 	      <td>${pb.name}</td>
 	      <td>${pb.id}</td>
 	      <td>${pb.age}</td>
+	      <td><a href="delete?num=${pb.num}">삭제</a></td>
+	      <td><a href="updateForm?num=${pb.num}">수정</a></td>
 	   </tr>
 	</c:forEach>
 </table>

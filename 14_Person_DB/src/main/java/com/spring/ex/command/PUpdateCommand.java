@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.spring.ex.dao.PDao;
 
-public class PWriteCommand implements PCommand{
+public class PUpdateCommand implements PCommand{
 
 	@Override
 	public void execute(Model model) {
@@ -16,14 +16,15 @@ public class PWriteCommand implements PCommand{
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("req");
 		
+		int num = Integer.parseInt(request.getParameter("num"));
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
-		String age = request.getParameter("age");
+		int age = Integer.parseInt(request.getParameter("age"));
 		
-		System.out.println(id+"/"+name+"/"+age);
+		System.out.println(num+"/"+id+"/"+name+"/"+age);
 		
 		PDao dao = PDao.getInstance();
-		dao.write(id, name, age);
+		dao.update(num,id,name,age);
 	}
-	
+
 }
