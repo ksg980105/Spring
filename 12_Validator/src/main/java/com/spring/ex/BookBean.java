@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class BookBean {
@@ -24,6 +25,24 @@ public class BookBean {
 	@NotEmpty(message = "출판사 입력 누락")
 	private String publisher;
 	
+	@NotBlank(message = "@NotBlank서점 1개 이상 선택해야합니다.")
+	private String bookstore;
+	
+	@NotBlank(message = "@NotBlank 배송비 선택하세요")
+	private String kind;
+	
+	public String getBookstore() {
+		return bookstore;
+	}
+	public void setBookstore(String bookstore) {
+		this.bookstore = bookstore;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
 	public String getTitle() {
 		return title;
 	}
