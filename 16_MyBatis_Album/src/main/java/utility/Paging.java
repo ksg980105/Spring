@@ -200,7 +200,7 @@ public class Paging {
 		
 		if( this.pageNumber > this.totalPage ){
 			this.pageNumber = this.totalPage ;
-		}
+		} //삭제 후에 이동할 페이지 설정
 		
 		this.offset = ( pageNumber - 1 ) * pageSize ; 
 		

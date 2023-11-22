@@ -16,9 +16,9 @@ public class AlbumDeleteController {
 	private AlbumDao albumDao;
 	
 	@RequestMapping(value = command)
-	public String delete(@RequestParam(value="num",required=true) int num) {
+	public String delete(@RequestParam(value="num",required=true) int num, @RequestParam("pageNumber") int pageNumber) {
 		
 		int cnt = albumDao.deleteAlbum(num);
-		return gotoPage;
+		return gotoPage+"?pageNumber="+pageNumber;
 	}
 }

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 albumList.jsp<br>
 
 <style>
@@ -10,6 +11,7 @@ albumList.jsp<br>
 	}
 </style>
 
+<h2 align="center">상품 목록(레코드 갯수:${pageInfo.totalCount}/${totalCount})</h2>
 <script type="text/javascript">
 	function insert(){
 		location.href="insert.ab";
@@ -48,7 +50,7 @@ albumList.jsp<br>
 	<tr>
 		<td>${list.num}</td>
 		<td>
-			<a href="detail.ab?num=${list.num}">${list.title}</a>
+			<a href="detail.ab?num=${list.num}&pageNumber=${pageInfo.pageNumber}">${list.title}</a>
 		</td>
 		<td>${list.singer}</td>
 		<td>${list.price}</td>
@@ -57,14 +59,16 @@ albumList.jsp<br>
 			<fmt:formatDate value="${day}" pattern="yyyy-MM-dd"/>
 		</td>
 		<td>
-			<a href="update.ab?num=${list.num}">수정</a>
+			<a href="update.ab?num=${list.num}&pageNumber=${pageInfo.pageNumber}">수정</a>
 		</td>
 		<td>
-			<a href="delete.ab?num=${list.num}">삭제</a>
+			<a href="delete.ab?num=${list.num}&pageNumber=${pageInfo.pageNumber}">삭제</a>
 		</td>
 	</tr>
 	</c:forEach>
 </table>
 
 <br>
-<a href="insert.ab">등록하러 가기</a>
+<center>
+	${pageInfo.pagingHtml}
+</center>

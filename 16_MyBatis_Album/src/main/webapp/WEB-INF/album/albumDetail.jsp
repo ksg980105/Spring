@@ -29,7 +29,7 @@ albumDetail.jsp<br>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<a href="list.ab">목록보기</a>
+			<a href="list.ab?pageNumber=${pageNumber}">목록보기</a>
 		</td>
 	</tr>
 </table>

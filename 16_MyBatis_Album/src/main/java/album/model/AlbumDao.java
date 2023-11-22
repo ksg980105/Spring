@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import utility.Paging;
 
 @Component("myAlbumDao")
 public class AlbumDao {
@@ -17,11 +20,15 @@ public class AlbumDao {
 	public AlbumDao() {
 
 	}
-	public List<AlbumBean> getAlbumList(Map<String,String> map) {
+	public List<AlbumBean> getAlbumList(Paging pageInfo,Map<String,String> map) {
 		System.out.println("getAlbumList");
 		
+		System.out.println("pageInfo.getOffset():"+pageInfo.getOffset()); //몇개를 건너뛸지
+		System.out.println("pageInfo.getLimit():"+pageInfo.getLimit()); //몇개 가져올지
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(),pageInfo.getLimit());
+		
 		List<AlbumBean> lists = new ArrayList<AlbumBean>();
-		lists = sqlSessionTemplate.selectList("album.AlbumBean.getAlbumList", map);
+		lists = sqlSessionTemplate.selectList("album.AlbumBean.getAlbumList", map,rowBounds);
 		System.out.println("lists.size():" + lists.size());
 		return lists;
 	}

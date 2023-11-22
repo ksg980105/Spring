@@ -53,9 +53,11 @@ public class AlbumListController {
 		Paging pageInfo = new Paging(pageNumber,pageSize,totalcount,url,whatColumn,keyword);
 		
 		//전체 데이터 출력
-		List<AlbumBean> lists = albumDao.getAlbumList(map);
+		List<AlbumBean> lists = albumDao.getAlbumList(pageInfo,map);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("albumLists", lists);
+		mav.addObject("pageInfo",pageInfo);
+		mav.addObject("totalCount",totalcount);
 		mav.setViewName(viewPage);
 		return mav;
 	}
