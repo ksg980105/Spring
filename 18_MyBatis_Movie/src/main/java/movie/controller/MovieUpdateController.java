@@ -44,7 +44,11 @@ public class MovieUpdateController {
 			model.addAttribute("pageNumber", pageNumber);
 			return viewPage;
 		}
-		movieDao.updateMovie(movieBean);
-		return gotoPage + "?pageNumber="+pageNumber;
+		int cnt = movieDao.updateMovie(movieBean);
+		if(cnt != -1) {
+			return gotoPage + "?pageNumber="+pageNumber;
+		}else {
+			return viewPage;
+		}
 	}
 }

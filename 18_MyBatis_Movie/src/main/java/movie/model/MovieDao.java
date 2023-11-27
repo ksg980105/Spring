@@ -53,8 +53,9 @@ public class MovieDao {
 		return movieBean;
 	}
 	
-	public void updateMovie(MovieBean movieBean) {
-		sqlSessionTemplate.update("movie.MovieBean.updateMovie",movieBean);
+	public int updateMovie(MovieBean movieBean) {
+		int cnt = sqlSessionTemplate.update("movie.MovieBean.updateMovie",movieBean);
+		return cnt;
 	}
 
 	public void deleteMovie(int num) {
