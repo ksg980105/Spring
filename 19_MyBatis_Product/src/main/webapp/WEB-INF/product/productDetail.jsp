@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../common/common.jsp" %>
 
 <style>
 	table{
@@ -13,6 +14,7 @@
 	<tr>
 		<td rowspan="7">
 			<img src="<%=request.getContextPath()%>/resources/uploadFolder/${productBean.image}" width="150">
+			<%= application.getContextPath()%>/resources/uploadFolder/ %>
 		</td>
 	</tr>
 	<tr>
@@ -34,8 +36,12 @@
 	<tr>
 		<td>주문 수량</td>
 		<td>
-			<input type="text" name="order">
-			<input type="button" value="주문">
+			<form action="add.mall" method="post">
+				<input type="hidden" name="num" value="${productBean.num}">
+				<input type="hidden" name="pageNumber" value="${pageNumber}">
+				<input type="text" name="orderqty" value="1">
+				<input type="submit" value="주문">
+			</form>
 		</td>
 	</tr>
 	<tr align="center">

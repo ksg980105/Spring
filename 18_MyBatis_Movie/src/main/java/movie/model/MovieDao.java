@@ -54,7 +54,12 @@ public class MovieDao {
 	}
 	
 	public int updateMovie(MovieBean movieBean) {
-		int cnt = sqlSessionTemplate.update("movie.MovieBean.updateMovie",movieBean);
+		int cnt = -1;
+		try{
+			cnt = sqlSessionTemplate.update("movie.MovieBean.updateMovie",movieBean);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return cnt;
 	}
 

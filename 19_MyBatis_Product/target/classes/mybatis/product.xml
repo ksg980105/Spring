@@ -32,4 +32,21 @@
 	<select id="getProductByNum" resultType="product.model.ProductBean">
 		select * from products where num=#{num}
 	</select>
+	
+	<update id="updateStock">
+		update products set
+		stock = stock - #{pqty}
+		where num = #{pnum}
+	</update>
+	
+	<update id="updateProduct">
+		update products set
+		name = #{name}, company = #{company}, price = #{price}, stock = #{stock}, point = #{point}, contents = #{contents}, image = #{image}
+		where num = #{num}
+	</update>
+	
+	<delete id="deleteProduct">
+		delete products
+		where num = #{num}
+	</delete>
 </mapper>

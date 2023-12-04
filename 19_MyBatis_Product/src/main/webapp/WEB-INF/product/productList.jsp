@@ -15,6 +15,9 @@
 	function goInsert(){
 		location.href="insert.pd";
 	}
+	function goUpdate(num, pageNumber){
+		location.href="update.pd?num="+num+"&pageNumber="+pageNumber;
+	}
 </script>
 
 <h2 align="center">상품 리스트 화면</h2>
@@ -65,10 +68,10 @@
 			<td>${list.contents}</td>
 			<td>${list.price}</td>
 			<td>
-				<a href="delete.pd?num=${list.num}">삭제</a>
+				<a href="delete.pd?num=${list.num}&pageNumber=${pageInfo.pageNumber}&image=${list.image}">삭제</a>
 			</td>
 			<td>
-				<input type="button" value="수정" onClick="goUpdate()">
+				<input type="button" value="수정" onClick="goUpdate('${list.num}', '${pageInfo.pageNumber}')">
 			</td>
 		</tr>
 	</c:forEach>

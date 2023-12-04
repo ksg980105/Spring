@@ -12,6 +12,8 @@
 	<mappers>
 		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/order.xml"/>
+		<mapper resource="mybatis/orderdetail.xml"/>
 	</mappers>
 </configuration>
 <!-- SqlMapConfig.xml -->

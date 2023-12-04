@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "orderdetail.OrderDetail">
+	<insert id="insertDetail">
+		insert into orderdetails values
+		(seqodid.nextval, #{oid}, #{pnum}, #{qty})
+	</insert>
+	
+	<select id="getMyOrderDetail" resultType="mall.cart.ShoppingInfo">
+		select pnum, name pname, qty, price
+		from orderdetails join products
+		on pnum = num
+		where oid = #{oid}
+	</select>
+	<!-- 주의할 점: resultType의 클래스의 변수명과 컬럼명을 일치시킬 것(별칭 설정)-->
+</mapper>

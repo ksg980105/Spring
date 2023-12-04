@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,14 @@ public class ProductInsertController {
 	ProductDao productDao;
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String insertGet() {
+	public String insertGet(HttpSession session) {
 		
-		return viewPage;
+		if(session.getAttribute("loginInfo") == null) { // 로그인 안했으면 (id, pw 입력 -> session 설정(loginInfo))
+			session.setAttribute("destination", "redirect:/insert.pd");
+			return "redirect:/loginForm.mb";
+		} else { // 로그인 했으면
+			return viewPage; // 상품추가 화면
+		}
 	}
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)

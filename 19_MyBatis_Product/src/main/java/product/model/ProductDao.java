@@ -1,6 +1,7 @@
 package product.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,8 @@ public class ProductDao {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
+	
+	private String namespace = "product.ProductBean";
 	
 	public ProductDao() {
 		
@@ -42,5 +45,25 @@ public class ProductDao {
 	public ProductBean getProductByNum(int num) {
 		ProductBean productBean = sqlSessionTemplate.selectOne("product.ProductBean.getProductByNum",num);
 		return productBean;
+	}
+
+	public void updateStock(int pnum, int pqty) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("pnum", pnum);
+		map.put("pqty", pqty); 
+		// ProductBean pb = new ProductBean();
+		// pb.setNum(pnum);
+		// pb.setStock(pqty); 넘어가서는 #{num}과 #{stock} 사용
+		int cnt = sqlSessionTemplate.update(namespace+".updateStock", map); 
+		System.out.println("updateStock cnt:"+cnt);
+	}
+
+	public void updateProduct(ProductBean pb) {
+		int cnt = sqlSessionTemplate.update(namespace+".updateProduct", pb);
+		System.out.println("updateProduct cnt:"+cnt);
+	}
+
+	public void deleteProduct(int num) {
+		sqlSessionTemplate.delete(namespace+".deleteProduct", num);
 	}
 }

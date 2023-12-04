@@ -48,6 +48,7 @@ public class MovieUpdateController {
 		if(cnt != -1) {
 			return gotoPage + "?pageNumber="+pageNumber;
 		}else {
+			model.addAttribute("pageNumber",pageNumber);
 			return viewPage;
 		}
 	}

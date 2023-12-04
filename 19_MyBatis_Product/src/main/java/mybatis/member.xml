@@ -3,5 +3,56 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace = "member.MemberBean">
-
+	<select id="getTotalCount" resultType="int">
+		select count(*) from members
+		<if test="whatColumn == 'name'">
+			where name like #{keyword}
+		</if>
+		<if test="whatColumn == 'gender'">
+			where gender like #{keyword}
+		</if>
+		<if test="whatColumn == 'hobby'">
+			where hobby like #{keyword}
+		</if>
+	</select>
+	
+	<select id="getAllMember" resultType="MyMember">
+		select * from members
+		<if test="whatColumn == 'name'">
+			where name like #{keyword}
+		</if>
+		<if test="whatColumn == 'gender'">
+			where gender like #{keyword}
+		</if>
+		<if test="whatColumn == 'hobby'">
+			where hobby like #{keyword}
+		</if>
+	</select>
+	
+	<insert id="insertMember">
+		insert into members(id, name, password, gender, hobby, address1, address2, mpoint) 
+		values(#{id}, #{name}, #{password}, #{gender}, #{hobby}, #{address1}, #{address2}, #{mpoint})
+	</insert>
+	
+	<select id="getMemberById" resultType="MyMember">
+		select * from members
+		where id = #{id}
+	</select>
+	
+	<delete id="deleteMember">
+		delete members
+		where id = #{id}
+	</delete>
+	
+	<update id="updateMember">
+		update members set
+		name = #{name}, password = #{password}, gender = #{gender}, hobby = #{hobby}, address1 = #{address1}, address2 = #{address2}, mpoint = #{mpoint}
+		where id = #{id}
+	</update>
+	
+	<update id="updateMpoint">
+		update members set
+		mpoint = mpoint + #{mpoint}
+		where id = #{id}
+	</update>
 </mapper>
